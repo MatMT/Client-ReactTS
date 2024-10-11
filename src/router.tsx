@@ -1,8 +1,9 @@
 import {createBrowserRouter} from 'react-router-dom';
 import Layout from "./layouts/Layout";
-import Products, {loader as productsLoader} from "./views/Products";
+import Products, {action as updateAvailabilityAction, loader as productsLoader} from "./views/Products";
 import NewProduct, {action as newProductAction} from "./views/NewProduct";
 import EditProduct, {loader as editProductLoader, action as editProductAction} from "./views/EditProduct";
+import {action as deleteProductAction} from "./components/ProductDetails";
 
 export const router = createBrowserRouter([
     {
@@ -12,7 +13,8 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Products/>,
-                loader: productsLoader
+                loader: productsLoader,
+                action: updateAvailabilityAction
             },
             {
                 path: 'products/new',
@@ -20,10 +22,14 @@ export const router = createBrowserRouter([
                 action: newProductAction
             },
             {
-                path: 'products/:id/edit', // ROA Pattern
+                path: 'products/:id/edit', // ROA Pattern - Resource Oriented Architecture
                 element: <EditProduct/>,
                 loader: editProductLoader,
                 action: editProductAction
+            },
+            {
+                path: 'products/:id/delete',
+                action: deleteProductAction
             }
         ]
     }

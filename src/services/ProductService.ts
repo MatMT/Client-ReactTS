@@ -1,4 +1,4 @@
-import {safeParse, parse, string, transform, pipe, number} from "valibot";
+import {safeParse} from "valibot";
 import axios from "axios";
 import {DraftProductSchema, Product, ProductsSchema, ProductSchema} from "../types";
 import {toBoolean} from "../utils";
@@ -73,11 +73,29 @@ export async function updateProduct(data: ProductData, id: Product['id']) {
 
         console.log('result', result);
 
-        if(result.success) {
+        if (result.success) {
             const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
             await axios.put(url, result.output);
         }
     } catch (error) {
         console.log(error)
+    }
+}
+
+export async function deleteProduct(id: Product['id']) {
+    try {
+        const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
+        await axios.delete(url);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function updateProductAvailability(id: Product['id']) {
+    try {
+        const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
+        await axios.patch(url, id);
+    } catch (error) {
+        console.log(error);
     }
 }

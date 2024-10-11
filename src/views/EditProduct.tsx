@@ -10,6 +10,7 @@ import {
 import ErrorMessage from "../components/ErrorMessage";
 import {getProductsById, updateProduct} from "../services/ProductService";
 import {Product} from "../types";
+import ProductForm from "../components/productForm";
 
 export async function loader({params}: LoaderFunctionArgs) {
     if (params.id !== undefined) {
@@ -39,8 +40,8 @@ export async function action({request, params}: ActionFunctionArgs) {
 }
 
 const availabilityOptions = [
-    {name: 'Disponible', value: true},
-    {name: 'No Disponible', value: false}
+    {name: 'Available', value: true},
+    {name: 'No Available', value: false}
 ]
 
 export default function EditProduct() {
@@ -64,36 +65,9 @@ export default function EditProduct() {
                 method={"POST"}
             >
 
-                <div className="mb-4">
-                    <label
-                        className="text-gray-800"
-                        htmlFor="name"
-                    >Name:</label>
-                    <input
-                        id="name"
-                        type="text"
-                        className="mt-2 block w-full p-3 bg-gray-50"
-                        placeholder="Product's name"
-                        name="name"
-                        defaultValue={product.name}
-                    />
-                </div>
-                <div className="mb-4">
-                    <label
-                        className="text-gray-800"
-                        htmlFor="price"
-                    >Price:</label>
-                    <input
-                        id="price"
-                        type="number"
-                        className="mt-2 block w-full p-3 bg-gray-50"
-                        placeholder="Product's price. ex. 200, 300"
-                        name="price"
-                        step={0.01}
-                        defaultValue={product.price}
-                    />
-                </div>
-
+                <ProductForm
+                    product={product}
+                />
 
                 <div className="mb-4">
                     <label
@@ -115,7 +89,7 @@ export default function EditProduct() {
                 <input
                     type="submit"
                     className="mt-5 w-full bg-indigo-600 p-2 text-white font-bold text-lg cursor-pointer rounded"
-                    value="Registrar Producto"
+                    value="Save Changes"
                 />
             </Form>
         </>

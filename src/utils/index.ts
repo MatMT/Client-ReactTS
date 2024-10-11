@@ -1,8 +1,8 @@
-export function formatCurrency(amount: number) {
+export function formatCurrency(amount: number|string) {
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
-    }).format(amount)
+    }).format(+amount)
 }
 
 export function toBoolean(str: string) {
