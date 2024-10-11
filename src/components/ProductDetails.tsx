@@ -29,11 +29,7 @@ export default function ProductDetails({product}: ProductDetailsProps) {
                     {/*    className={"bg-indigo-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs text-center"}*/}
                     {/*>Edit</Link>*/}
                     <button
-                        onClick={() => navigate(`/products/${product.id}/edit`, {
-                            state: {
-                                product
-                            }
-                        })}
+                        onClick={() => navigate(`/products/${product.id}/edit`)}
                         className={"bg-indigo-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs text-center"}
                     >Edit
                     </button>

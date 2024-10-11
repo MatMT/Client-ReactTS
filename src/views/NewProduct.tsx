@@ -60,6 +60,7 @@ export default function NewProduct() {
                         className="mt-2 block w-full p-3 bg-gray-50"
                         placeholder="Product's price. ex. 200, 300"
                         name="price"
+                        step={0.01}
                     />
                 </div>
                 <input
